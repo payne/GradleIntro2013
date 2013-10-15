@@ -1,7 +1,12 @@
-Slides for Java Testing 2013 tech talk
+Slides for Gradle 2013 tech talk
 =======
 
-Presentation here: http://jeffsheets.github.io/JavaTesting2013Slides
+Presentation here: http://payne.github.io/Gradle2013Slides
+
+#### Thanks to Jeff Sheets!
+* Jeff used a wonderful setup for his slides in his talk
+  * https://github.com/jeffsheets/JavaTesting2013Slides
+* I have forked his repo and filled it with some info on Gradle
 
 #### Dependencies
 * Node
@@ -26,3 +31,4 @@ Presentation here: http://jeffsheets.github.io/JavaTesting2013Slides
   * Uses git subtree merge to merge the contents of dist into the gh-pages branch
 
   Thanks to Mike Kelly for the reveal.js template! https://github.com/mrkelly/reveal-template
+
