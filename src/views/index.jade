@@ -22,10 +22,12 @@ html(class="no-js", ng-app="main")
       .slides
         section
           section.index-section(data-state="index-slide")
+            img(src="assets/img/goldilocks.jpg")
             h2 Goldilocks' would use gradle 
             div an introduction to gradle 
             div by Matt Payne
             div 10/15/2013
+
 
           section
             h2
@@ -77,6 +79,7 @@ html(class="no-js", ng-app="main")
                 li Multiple language builds
               li Review shortcuts, tips, and tricks
               li Maven broken?
+              li gradle-1.7/samples
               li References
 
               hr
@@ -139,12 +142,13 @@ html(class="no-js", ng-app="main")
 
         section
             h2 When is gradle ready to use?
-            p Now
+            h1 Now
             ol 
-              li Reason 1
-              li Reason 2
-            p Roadmap
-            p Conferences
+              li One can have gradle doing builds while ant or maven are also doing builds
+              li 
+                a(href="http://www.gradle.org/roadmap",target="_blank") Roadmap
+              li
+                a(href="http://www.gradle.org/events", target="_blank") Events
 
         section
           section
@@ -371,21 +375,6 @@ html(class="no-js", ng-app="main")
           section
               h2 Reusing ant goals
 
-          section
-            h2 Traditional JUnit
-            div CarRepositoryIT.java
-            pre.
-              <code data-trim contenteditable>
-              //Setup your Eclipse Favorites for code suggestions
-              import static org.junit.Assert.assertEquals;
-              
-              /* ... */
-              
-              assertEquals(2013, result.getYear().intValue());
-              assertEquals("JunitMotors", result.getMake().getName());
-              assertEquals(make.getId(), result.getMake().getId());
-              assertEquals(car.getDescription(), result.getDescription());
-              </code>
 
         section
           section 
@@ -447,6 +436,20 @@ html(class="no-js", ng-app="main")
               li Is gradle perfect?  Of course not! 
                 i.icon-smile
               li Discussion?  Over beer?
+
+        section
+            h2 gradle-1.7/samples
+            ol
+              li webApplication
+              li ear
+              li groovy
+              li java/multiproject
+              li java/quickstart
+              li java/customizedLayout
+              li java/withIntegrationTests
+                ul
+                  li gradle integrationTest
+              
 
         section
             h2 Free References

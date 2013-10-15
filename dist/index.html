@@ -24,7 +24,7 @@
     <div class="reveal">
       <div class="slides">
         <section>
-          <section data-state="index-slide" class="index-section">
+          <section data-state="index-slide" class="index-section"><img src="assets/img/goldilocks.jpg">
             <h2>Goldilocks' would use gradle </h2>
             <div>an introduction to gradle </div>
             <div>by Matt Payne</div>
@@ -80,6 +80,7 @@
             </ol>
             <li>Review shortcuts, tips, and tricks</li>
             <li>Maven broken?</li>
+            <li>gradle-1.7/samples</li>
             <li>References</li>
             <hr>
             <h3>Please ask questions and make suggestions!</h3>
@@ -150,13 +151,12 @@
         </section>
         <section>
           <h2>When is gradle ready to use?</h2>
-          <p>Now</p>
+          <h1>Now</h1>
           <ol> 
-            <li>Reason 1</li>
-            <li>Reason 2</li>
+            <li>One can have gradle doing builds while ant or maven are also doing builds</li>
+            <li> <a href="http://www.gradle.org/roadmap" target="_blank">Roadmap</a></li>
+            <li><a href="http://www.gradle.org/events" target="_blank">Events</a></li>
           </ol>
-          <p>Roadmap</p>
-          <p>Conferences</p>
         </section>
         <section>
           <section>
@@ -390,22 +390,6 @@ task BeanDemo(type: JavaExec) {
           <section>
             <h2>Reusing ant goals</h2>
           </section>
-          <section>
-            <h2>Traditional JUnit</h2>
-            <div>CarRepositoryIT.java</div>
-            <pre><code data-trim contenteditable>
-//Setup your Eclipse Favorites for code suggestions
-import static org.junit.Assert.assertEquals;
-
-/* ... */
-
-assertEquals(2013, result.getYear().intValue());
-assertEquals("JunitMotors", result.getMake().getName());
-assertEquals(make.getId(), result.getMake().getId());
-assertEquals(car.getDescription(), result.getDescription());
-</code>
-</pre>
-          </section>
         </section>
         <section>
           <section> 
@@ -472,6 +456,22 @@ assertEquals(car.getDescription(), result.getDescription());
             <li>http://www.gradleware.com/news/blog/answering-more-gradle-v-maven-fud</li>
             <li>Is gradle perfect?  Of course not! <i class="icon-smile"></i></li>
             <li>Discussion?  Over beer?</li>
+          </ol>
+        </section>
+        <section>
+          <h2>gradle-1.7/samples</h2>
+          <ol>
+            <li>webApplication</li>
+            <li>ear</li>
+            <li>groovy</li>
+            <li>java/multiproject</li>
+            <li>java/quickstart</li>
+            <li>java/customizedLayout</li>
+            <li>java/withIntegrationTests
+              <ul>
+                <li>gradle integrationTest</li>
+              </ul>
+            </li>
           </ol>
         </section>
         <section>
