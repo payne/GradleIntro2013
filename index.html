@@ -13,124 +13,350 @@
   <!-- <![endif]-->
   <head>
     <meta charset="utf-8">
-    <title>Testing Java Code in 2013</title>
+    <title>Gradle Introduction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="Testing Java Code in 2013">
+    <meta name="description" content="Gradle Introduction 2013">
     <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <div class="reveal">
-      <div class="opi-logo"></div>
       <div class="slides">
-        <section data-state="index-slide" class="index-section">
-          <h1><i class="icon-coffee">&nbsp; &nbsp; </i><i class="icon-thumbs-up"></i></h1>
-          <h2>Testing Java Code in 2013</h2>
-          <div>Beyond JUnit w/ Hamcrest, Mockito, Spring, and Spock!</div>
-          <div>{by Jeff Sheets}</div>
-        </section>
         <section>
-          <h1><i class="icon-github"></i></h1>
-          <p>These slides are up on GitHub!</p><a href="http://jeffsheets.github.io/JavaTesting2013Slides" target="_blank">jeffsheets/JavaTesting2013Slides</a>
-        </section>
-        <section>
+          <section data-state="index-slide" class="index-section">
+            <h2>Goldilocks' would use gradle </h2>
+            <div>an introduction to gradle </div>
+            <div>{by Matt Payne} </div>
+            <div>10/15/2013</div>
+          </section>
+          <section>
+            <h2><i class="icon-github"></i></h2>
+            <ul>
+              <li>These slides are up on GitHub!  </li>
+              <ul>
+                <li> <a href="http://payne.github.io/Gradle2013Slides" target="_blank">payne.github.io/Gradle2013Slides</a></li>
+              </ul>
+              <li>Source for these slides is also on GitHub </li>
+              <ul> 
+                <li><a href="https://github.com/payne/Gradle2013Slides" target="_blank">github.com/payne/Gradle2013Slides</a></li>
+              </ul>
+              <li>This slide deck started life as a clone of Jeff Sheets' August 2013 talk</li>
+              <ul>
+                <li> <a href="http://jeffsheets.github.io/JavaTesting2013Slides" target="_blank">jeffsheets/JavaTesting2013Slides</a></li>
+                <ul>
+                  <li>Many, many thanks Jeff!</li>
+                </ul>
+              </ul>
+            </ul>
+          </section>
           <section>
             <h2>About Me</h2>
             <ul>
-              <li>Java/Grails/Javascript Consultant for OPI</li>
-              <li> <i class="icon-twitter">&nbsp;</i><a href="https://twitter.com/sheetsj" target="_blank">@sheetsj</a></li>
-              <li>Website &nbsp;<a href="http://sheetsj.com/" target="_blank">http://sheetsj.com/</a></li>
-              <li>jeffsheets@gmail.com</li>
+              <li>
+                 
+                Software Engineer at <a href="http://Solutionary.com" target="_blank">Solutionary</a>
+              </li>
+              <li> <i class="icon-twitter">&nbsp;</i><a href="https://twitter.com/MattPayneOrg" target="_blank">@MattPayneOrg</a></li>
+              <li> <i class="icon-github">&nbsp;</i><a href="https://github.com/payne" target="_blank">@payne</a>
+                <li>Website &nbsp;</li><a href="http://MattPayne.org/" target="_blank">http://MattPayne.org</a>
+                <li>Payne@MattPayne.org</li>
+              </li>
             </ul>
           </section>
         </section>
         <section>
-          <h2>Objectives Assuming...</h2>
-          <ul>
-            <li>Spring MVC + JPA/Hibernate</li>
-            <li>Using Maven {<i class="icon-frown">}</i></li>
-            <li>Using Eclipse/STS/GGTS or RAD {<i class="icon-frown"> </i><i class="icon-frown">}</i></li>
-            <li>We want tools newer than JUnit 3</li>
-            <li>Possibly use Groovy for tests (but not prod code)</li>
-            <div>&nbsp;</div>
-            <li>Please ask questions!</li><span>Everyone in this room is an expert!</span>
-          </ul>
+          <h2>Talk Outline </h2>
+          <ol>
+            <li>5WH: What, Why, Where, Who, When, and How</li>
+            <li>Using and demoing gradle {<i class="icon-smile">}</i></li>
+            <ol>
+              <!--TODO: type=a-->
+              <li>From scatch</li>
+              <li>Eclipse Plugin</li>
+              <li>What about maven and ant?</li>
+              <li>Multiproject builds</li>
+              <li>Multiple language builds</li>
+            </ol>
+            <li>Review shortcuts, tips, and tricks</li>
+            <li>Maven broken?</li>
+            <li>References</li>
+            <hr>
+            <h3>Please ask questions and make suggestions!</h3>
+            <ul>
+              <li>"Everyone in this room is an expert!" 
+                <ul>
+                  <li>Jeff Sheets' great observation from 8/20/2013</li>
+                </ul>
+              </li>
+            </ul>
+          </ol>
+        </section>
+        <section>
+          <h2>What is gradle?</h2>
         </section>
         <section>
           <section>
-            <h2>Why test your code?</h2>
-            <ul>
-              <li>Developers -> Code</li>
-              <li>Senior Developers -> Code and Test</li>
-              <li>Chuck Norris -> continuously deploys to prod with 100% test coverage -- in COBOL &nbsp;<i class="icon-thumbs-up"></i></li>
-            </ul>
+            <h2>Why use gradle?</h2>
+            <ol>
+              <li>Gradle manifesto:</li>
+              <div>Make the impossible possible, make the possible easy and make the easy elegant.
+                <ul>
+                  <li>(inspired by Moshe Feldenkrais)</li>
+                </ul>
+              </div>
+            </ol>
           </section>
           <section>
-            <h2>Really why test?</h2>
-            <ul>
-              <li>Obvious (you wouldn't be in this room otherwise)</li>
-              <li>Molds your testable <b>coding style</b></li>
-              <li>Faster than redeploy-test-repeat</li>
-              <li>Coding with <b>confidence</b></li>
-              <li>Continuous Deployment &nbsp;<i class="icon-sun"></i></li>
-            </ul>
-          </section>
-          <section>
-            <h3>Keep It Simple</h3>
-            <ul>
-              <li>Do all of your tests pass?</li>
-              <li>Jenkins Server (in the cloud!)</li>
-              <li>Test Independence</li>
-              <li>Not too brittle</li>
-            </ul>
+            <h2>TAM!</h2>
+            <h3>Technology Acceptance Model</h3>
           </section>
         </section>
         <section>
-          <h3>Sample App</h3>
-          <ul>
-            <li>Simple Domain Model for Car Maintenance</li>
-            <li><i class="icon-github"> </i><a href="https://github.com/jeffsheets/carmaint" target="_blank">https://github.com/jeffsheets/carmaint</a></li>
-            <li>Generated by <a href="https://github.com/kolorobot/spring-mvc-quickstart-archetype" target="_blank">spring-mvc-quickstart-archetype</a></li>
-          </ul>
+          <h2>Where is gradle being used?</h2>
+          <ol>
+            <li>Put in some stuff about adoption curves </li>
+            <li>Add the list of projects and companies that use gradle</li>
+          </ol>
+        </section>
+        <section>
+          <h2>Who is who in the gradle zoo?</h2>
+          <ol> 
+            <li>TB</li>
+            <li>Main Gradle person</li>
+            <li>GradleWare.com</li>
+          </ol>
+        </section>
+        <section>
+          <h2>When is gradle ready to use?</h2>
+          <p>Now</p>
+          <ol> 
+            <li>Reason 1</li>
+            <li>Reason 2</li>
+          </ol>
+          <p>Roadmap</p>
+          <p>Conferences</p>
         </section>
         <section>
           <section>
-            <h3>Unit vs Integration vs Functional</h3>
-            <ul>
-              <li>unit: JUnit+Mockito or Spock</li>
-              <li>int: Spring Transactional and Wiring</li>
-              <li>func: Geb, Selenium, Cloud...</li>
-              <li>Others???</li>
-              <li>How to separate the types?</li>
-            </ul>
+            <h2>How to get started using gradle? From...</h2>
+            <ol> 
+              <li>Command line</li>
+              <li>Eclipse</li>
+              <li>maven</li>
+              <li>ant</li>
+              <li>multi project</li>
+              <li>multi language</li>
+            </ol>
           </section>
           <section>
-            <h2>Separating Testing types - by Dir</h2>
-            <ul>
-              <li>src/java/main</li>
-              <li>src/java/test</li>
-              <li>src/java/integration   ???</li>
-              <li>src/groovy/test        ---> for spock</li>
-              <li>src/groovy/integration</li>
-              <li> <b>Maven </b>makes this very <b>difficult!</b></li>
-            </ul>
+            <h2>Gradle on the command line</h2>
+            <ol>
+              <li>Hello world project</li>
+              <li>Turning project into an eclipse project</li>
+            </ol>
           </section>
           <section>
-            <h2>Separating Testing types - by File</h2>
-            <ul>
-              <li>MyServiceTest.java</li>
-              <li>MyServiceIT.java   //Maven failsafe plugin pattern</li>
-              <li>MyServiceSpec.groovy //Spock </li>
-              <li>MyServiceSpecIT.groovy //Spock + failsafe</li>
-              <li>Failsafe setup in <a href="https://github.com/jeffsheets/carmaint/blob/master/pom.xml" target="_blank">Pom.xml </a></li>
-            </ul>
+            <h2>First gradle: the source</h2>
+            <div>Hello.java</div>
+            <pre><code data-trim contenteditable>
+package demo;
+
+/* ... */
+public class Hello {
+
+  public static void main(String[] args) {
+    System.out.format("Hello world\n");
+  }
+}
+</code>
+</pre>
           </section>
-        </section>
-        <section>
-          <h2>Traditional JUnit</h2>
-          <div>CarRepositoryIT.java</div>
-          <pre><code data-trim contenteditable>
+          <section>
+            <h2>First gradle: the build file</h2>
+            <div>build.gradle</div>
+            <pre><code data-trim contenteditable>
+apply plugin: 'java'
+</code>
+</pre>
+          </section>
+          <section>
+            <h2>First gradle: the session</h2>
+            <pre><code data-trim contenteditable>
+mkdir -p src/main/java/demo
+cat > src/main/java/demo/Hello.java 
+cat > gradle.build
+tree
+gradle build
+gradle build
+gradle -daemon build
+gradle build
+java -cp build/libs/first.jar demo.Hello
+</code></pre>
+            <ol>
+              <li>Let's note the timing differences
+                <ul>
+                  <li>Tip 1: gradle's daemon makes things "faster"</li>
+                </ul>
+              </li>
+              <li>gradle build does several things
+                <ul>
+                  <li>Compile</li>
+                  <li>Build jar</li>
+                  <li>Run tests</li>
+                  <li>Build test report</li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+          <section>
+            <h2>That's a lot of files</h2>
+            <ol> 
+              <li>gradle clean; find * | wc -l # output 6</li>
+              <li>gradle build; find * | wc -l # output 17</li><img src="assets/img/tree1.png">
+            </ol>
+          </section>
+          <section>
+            <h3>gradle tasks: That's a lot of tasks</h3>
+            <h3>Not alot of gradle</h3>
+            <pre><code>
+mpayne-mbp:first mpayne$ cat build.gradle 
+apply plugin: 'java'
+mpayne-mbp:first mpayne$
+</code></pre>
+          </section>
+          <section>
+            <h2>special tasks</h2>
+            <h3>Build Setup tasks</h3>
+            <ol>
+              <li>setupBuild - Initializes a new Gradle build. [incubating]</li>
+              <li>wrapper - Generates Gradle wrapper files. [incubating]</li>
+            </ol>
+          </section>
+          <section>
+            <h2>Dependency management: the source</h2>
+            <div>DemoBeanUtils.java</div>
+            <pre><code data-trim contenteditable>
+package demo;
+import org.apache.commons.beanutils.BeanUtils;
+
+/* ... */
+public class MainBeanUtilsDemo {
+  private String jdbcDriverClass, dbUrl, dbUser, dbPassword;
+  
+  public MainBeanUtilsDemo(String[] args) throws FileNotFoundException,
+    IOException, IllegalAccessException, InvocationTargetException {
+    
+    this.strPropertyFileName = args.length > 0 ? args[0] : "jdbc.properties";
+    Properties properties = new Properties();
+    properties.load(new FileReader(strPropertyFileName));
+    BeanUtils.populate(this, properties);
+    System.out.format("user=%s password=%s\n", dbUser, dbPassword);
+  }
+}
+</code>
+</pre>
+          </section>
+          <section>
+            <h2>Dependency management: the build file</h2>
+            <div>build.gradle</div>
+            <pre><code data-trim contenteditable>
+apply plugin: 'java'
+repositories { mavenCentral() }
+
+dependencies { 
+    compile 'commons-beanutils:commons-beanutils:1.8.3'
+}
+</code>
+</pre>
+          </section>
+          <section>
+            <h2>Dependency management: the session</h2>
+            <pre><code data-trim contenteditable>
+mkdir -p src/main/java/demo # redundant
+cat > src/main/java/demo/MainBeanUtilsDemo.java 
+cat > gradle.build
+echo 'org.gradle.daemon=true' > gradle.properties
+gradle build # Don't need the --daemon now
+</code></pre>
+            <ol>
+              <li>Let's note the timing differences
+                <ul>
+                  <li>Tip 2: Use gradle.properties to always use the daeomn
+                    <ul>
+                      <li>gradle's daemon makes things "faster"</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>gradle.properties can be located in several places
+                <ol>
+                  <li>next to build.gradle</li>
+                  <li>in ${HOME}</li>
+                </ol>
+              </li>
+              <li> <a href="http://www.gradle.org/docs/current/userguide/build_environment.html" target="_blank">User Guide Chapter 20: The Build Environment</a></li>
+            </ol>
+          </section>
+          <section>
+            <h2>Dependency management: Running </h2>
+            <ul> 
+              <li>Let's use gradle to run our code </li>
+              <li>Folks manage the classpath like this with ant and maven too...</li>
+            </ul>
+            <pre><code data-trim contenteditable>
+apply plugin: 'java'
+repositories { mavenCentral() }
+
+dependencies { 
+    compile 'commons-beanutils:commons-beanutils:1.8.3'
+}
+
+task BeanDemo(type: JavaExec) {
+  main='demo.MainBeanUtilsDemo'
+  classpath=runtimeClasspath
+}
+</code></pre>
+            <ol>
+              <li>gradle BeanDemo</li>
+              <li>gradle BD</li>
+              <ul>
+                <li>Tip 3: The CamelCaseShortCut (CCSC)</li>
+              </ul>
+            </ol>
+          </section>
+          <section>
+            <h2>Using gradle's eclipse plugin</h2>
+            <ol>
+              <li>add "apply plugin: 'eclipse'" to your build.gradle</li>
+              <li>gradle eclipse</li>
+              <li>In eclipse, import existing eclipse project</li>
+              <li>joy <i class="icon-smile"></i></li>
+            </ol>
+            <h2>Next, Using eclipse's gradle plugin</h2>
+          </section>
+          <section>
+            <h2>Using eclipse's gradle plugin</h2>
+            <ol>
+              <li> </li><a href="http://www.gradle.org/tooling">Gradle tooling</a>
+              <li> </li><a href="https://marketplace.eclipse.org/content/gradle-integration-eclipse">Gradle Integration for Eclipse</a>
+              <ul>
+                <li>I did not install the Spring Dashboard</li>
+                <li>github.com/spring-projects/eclipse-integration-gradle/</li>
+              </ul>
+              <li> <img src="assets/img/eclipse-marketplace.png"></li>
+            </ol>
+          </section>
+          <section>
+            <h2>Converting a maven project</h2>
+          </section>
+          <section>
+            <h2>Reusing ant goals</h2>
+          </section>
+          <section>
+            <h2>Traditional JUnit</h2>
+            <div>CarRepositoryIT.java</div>
+            <pre><code data-trim contenteditable>
 //Setup your Eclipse Favorites for code suggestions
 import static org.junit.Assert.assertEquals;
 
@@ -141,626 +367,31 @@ assertEquals("JunitMotors", result.getMake().getName());
 assertEquals(make.getId(), result.getMake().getId());
 assertEquals(car.getDescription(), result.getDescription());
 </code>
-
-</pre>
-        </section>
-        <section>
-          <section>
-            <h2>Hamcrest</h2>
-            <div>CarRepositoryIT.java</div>
-            <pre><code data-trim contenteditable>
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-/* ... */
-
-assertThat(result.getYear().intValue(), is(equalTo(2013)));
-assertThat(result.getMake().getName(), is("JunitMotors"));
-assertThat(result.getMake().getId(), is(make.getId()));
-assertThat(result.getDescription(), is(car.getDescription()));
-
-//containsString
-//equalToIgnoringCase
-</code>
-</pre>
-          </section>
-          <section>
-            <h2>Hamcrest Details</h2>
-            <ul>
-              <li>Readable assertions (actual before expected)</li>
-              <li><a href="https://code.google.com/p/hamcrest/wiki/Tutorial" target="_blank">Hamcrest Docs</a>
-                <div>&nbsp;</div>
-              </li>
-              <li>ProviderRepositoryIT.java</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-assertThat(result, not(nullValue()));
-assertThat(result, hasSize(original.size() + 1));
-
-//This requires overridden provider.equals method
-assertThat(result, hasItem(provider));
-</code>
-</pre>
-          </section>
-          <section>
-            <h2>Custom Matchers</h2>
-            <ul>
-              <li>Implement Matcher interface</li><span>matches() and describeTo() methods</span>
-              <li>Use static methods for <b>readability</b></li>
-              <li>CustomMatchers.java and PropertiesIT.java</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-import static com.sheetsj.test.matchers.CustomMatchers.isStringInjected;
-
-/* ... */
-
-assertThat(anotherProperty, isStringInjected());
-</code>
-
 </pre>
           </section>
         </section>
         <section>
-          <section>
-            <h2>Fest</h2>
-            <ul>
-              <li>Fluent API for writing assertions (readability)</li>
-              <li><a href="https://github.com/alexruiz/fest-assert-2.x/wiki/One-minute-starting-guide" target="_blank">Fest Starting Guide</a>
-                <div>&nbsp;</div>
-              </li>
-              <li>UserServiceTest.java</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-import static org.fest.assertions.Assertions.assertThat;
-
-/* ... */
-
-assertThat(demoUser.getEmail()).isEqualTo(userDetails.getUsername());
-assertThat(demoUser.getPassword()).isEqualTo(userDetails.getPassword());
-assertThat(hasAuthority(userDetails, demoUser.getRole()));
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Checking Thrown Exceptions</h2>
-            <div>JUnit 4 actually provides a BAD way</div>
-            <pre><code data-trim contenteditable>
-//Don't copy this!
-@Test(expected=IndexOutOfBoundsException.class)
-public void testIndexOutOfBoundsException() {
-    Object a = service.getAllResults().get(2);
-    Object b = service.getAllForA(a).get(2);
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>The Better Way</h2>
-            <div>Use ExpectedException @Rule (UserServiceTest.java)</div>
-            <pre><code data-trim contenteditable>
-@Rule
-public ExpectedException thrown = ExpectedException.none();
-
-public void shouldThrowExceptionWhenUserNotFound() {
-  thrown.expect(UsernameNotFoundException.class);
-  thrown.expectMessage("not found");  //NOTE: something funny here
-  
-  when(accountRepositoryMock.findByEmail("user@example.com")).thenReturn(null);
-  
-  userService.loadUserByUsername("user@example.com");
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>The Custom Way</h2>
-            <ul>
-              <li>BusinessValidationExceptionMatchers.java</li>
-              <li>Custom Hamcrest matchers for sourceField and arguments</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-public static void expect(String message, ExpectedException thrown)
-{
-  thrown.expect(BusinessValidationException.class);
-  thrown.expectMessage(equalTo(message));
-}
-
-/** From UserServiceTest.java */
-public void shouldThrowBusinessExceptionWhenUsernameTooShort() {
-  //Uses custom expect matcher using equalTo() instead of containsString()
-  expect("username", "username.too.short", thrown, "ab");
-  
-  userService.loadUserByUsername("ab");
-}
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Mockito Annotations</h2>
-            <ul>
-              <li>We've all used Mockito? JMock? Others?</li>
-              <li>Why? To isolate our
-                <u> <b>Unit Tests!</b></u>
-              </li>
-              <li>Mock method return values</li>
-              <li>Verify mock methods were called</li>
-              <li> <strong>Spy </strong>to mock method on class-under-test</li>
-            </ul>
-          </section>
-          <section>
-            <h2>The Old Mockito Way</h2>
-            <div>WorkItemServiceOldMockitoWayTest.java</div>
-            <pre><code data-trim contenteditable>
-private WorkItemRepository workItemRepository = mock(WorkItemRepository.class);
-private WorkItemService service = new WorkItemService(workItemRepository);
-
-/* .. inside a test method .. */
-when(workItemRepository.findAll()).thenReturn(allWorkItems);
-</code></pre>
-          </section>
-          <section>
-            <h2>The New Mockito Way</h2>
-            <div>WorkItemServiceTest.java</div>
-            <pre><code data-trim contenteditable>
-@RunWith(MockitoJUnitRunner.class)
-public class WorkItemServiceTest {
-  @Mock
-  private WorkItemRepository workItemRepository;
-  
-  @InjectMocks
-  private WorkItemService service = new WorkItemService();
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Those Double-Crossing Spies 
-              <div class="i icon-meh"></div>
-            </h2>
-            <ul>
-              <li>Spies are a code smell</li>
-              <li>But sometimes it is just easier (legacy)</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-@InjectMocks
-@Spy
-private WorkItemService service = new WorkItemService();
-
-/* ... in test method ... */
-doReturn(expectedList).when(service)
-     .selectWorkItemsByMakeAndYear("bmw", "2008", allWorkItems);
-     
-Collection&lt;WorkItem> results = service.findAllByMakeAndYear("bmw", "2008");
-
-//Showing nested matchers in contains and sameInstance
-assertThat(results, contains(sameInstance(expected)));
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Spring Integration Tests</h2>
-            <ul>
-              <li>Are you testing your ORM/SQL?</li>
-              <div>{Stored Procs? Sorry!}</div>
-              <li>What about Spring Wiring?</li>
-              <div>{Especially any <b>injected </b>properties}</div>
-            </ul>
-          </section>
-          <section>
-            <h2>Transactional Tests</h2><b>Auto-rollback from real database!</b>
-            <div>IntegrationTestBaseClass.java</div>
-            <pre><code data-trim contenteditable>
-@ContextConfiguration(loader=AnnotationConfigContextLoader.class, 
-             classes={RootConfig.class, PersistenceConfig.class})
-@ActiveProfiles("test")
-public abstract class IntegrationTestBaseClass extends 
-                  AbstractTransactionalJUnit4SpringContextTests {
-                  
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Transactional Tests 2</h2>
-            <div>Test now talks to real DB</div><small>WorkItemRepositoryIT.java</small>
-            <pre><code data-trim contenteditable>
-public class WorkItemRepositoryIT extends IntegrationTestBaseClass {
-  List&lt;WorkItem> original = workItemRepository.findAll();
-  
-  Manufacturer make = manufacturerRepository.save(new Manufacturer("JUnitMake"));
-  Car car = carRepository.save(new Car(2013, make, "JunitModel", "LT FWD 3.6L V6 DOHC 24V"));
-  Provider provider = providerRepository.save(new Provider("Junit Tire Shop", "Shadow Lake"));
-  
-  WorkItem workItem = new WorkItem(car, new Date(), "Oil Change", provider, 18123L, 60.12, "Took 1:45 so got free oil change coupon");
-  workItem = workItemRepository.save(workItem);
-  
-  List&lt;WorkItem> result = workItemRepository.findAll();
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Mad Props</h2>
-            <ul>
-              <li>Integration Test our Properties too</li>
-              <li>Especially if coming from database table</li>
-              <li>Two styles: 1) All props in PropertiesIT.java</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-public class PropertiesIT extends IntegrationTestBaseClass {
-
-  @Value("${another.property}")
-  private String anotherProperty;
-  
-  @Test
-  public void testAnotherProperty() {
-    assertThat(anotherProperty, isStringInjected());
-  }
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Mad Props 2</h2>
-            <ul>
-              <li>2) Test on injected class</li>
-              <div>{Better but needs <b>protected </b>getter}</div>
-            </ul>
-            <pre><code data-trim contenteditable>
-public class UserServiceIT extends IntegrationTestBaseClass {
-  @Autowired
-  private UserService userService;
-  
-  @Test
-  public void testPropertyIsInjected() {
-    assertThat(userService.getAnotherProperty(), isStringInjected());
-  }
-}
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Spock Testing Framework</h2>
-            <ul>
-              <li>"The Enterprise Ready Specification Framework"
-                <div class="i icon-rocket"></div>
-              </li>
-              <li>Yes, Spock is Groovy</li>
-              <li>But tests Java classes fine (or better)</li>
-              <li>Read the <a href="http://code.google.com/p/spock/wiki/SpockBasics" target="_blank">Intro Docs</a></li>
-              <li>IANASE (I Am Not A Spock Expert)</li>
-            </ul>
-          </section>
-          <section>
-            <h2>Spock Setup</h2>
-            <ul>
-              <li>Mrhaki Blog post<a href="http://mrhaki.blogspot.fr/2011/01/spocklight-add-spock-support-to-java.html" target="_blank">Setup Spock in Eclipse</a></li>
-              <li>1) Setup Groovy and Spock in Pom.xml
-                <div>Dependencies and Plugins</div>
-              </li>
-            </ul>
-            <pre><code data-trim contenteditable>
-&lt;properties>
-  &lt;spock.version>0.7-groovy-2.0&lt;/spock.version>
-  &lt;groovy.version>2.0.7&lt;/groovy.version>
-&lt;/properties>
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Setup 2</h2>
-            <ul>
-              <li>2) Build Path for src/test/groovy</li>
-              <li>3) Output Folder for src/test/groovy</li>
-              <li>4) Profit???</li>
-            </ul>
-          </section>
-          <section>
-            <h2>Spock Setup Gotcha's</h2>
-            <ul>
-              <li>No spock-maven plugin in Maven 3</li>
-              <li>Groovy only for tests? Just use testCompile goal</li>
-              <li>STS gmaven <a href="http://stackoverflow.com/questions/15938466/plugin-execution-not-covered-by-lifecycle-configuration-error-in-eclipse-juno" target="_blank">not covered by lifecycle configuration<i class="icon-stackexchange"></i></a></li>
-            </ul>
-            <pre><code data-trim contenteditable>
-<lifecycleMappingMetadata>
-  <pluginExecutions>
-    <pluginExecution>
-      <pluginExecutionFilter>
-        <groupId>org.codehaus.gmaven</groupId>
-        <artifactId>gmaven-plugin</artifactId>
-        <versionRange>[1.5,)</versionRange>
-        <goals>
-          <goal>testCompile</goal>
-          <!-- <goal>compile</goal> -->
-        </goals>
-      </pluginExecutionFilter>
-      <action> 
-        <ignore></ignore>
-      </action>
-    </pluginExecution>
-  </pluginExecutions>
-</lifecycleMappingMetadata>
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Spock Test Code</h2>
-            <div>Basic Layout</div>
-            <pre><code data-trim contenteditable>
-class WorkItemServiceSpecTest extends Specification {
-  def service = new WorkItemService()
-  def "getYearAsString works for simple case"() {
-    given: 'a normal date'
-    def date = Date.parse("MM/dd/yyyy", "08/01/2013")
-    
-    when: 'getYearAsString is called'
-    def result = service.getYearAsString(date)
-    
-    then: 'year is correct on result'
-    result == "2013"
-  }
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Expect: for functional code</h2>
-            <pre><code data-trim contenteditable>
-def "getYearAsString works for simple case using expect block"() {
-  given: 'a normal date'
-  def date = Date.parse("MM/dd/yyyy", "08/01/2013")
-  
-  expect: 'getYearAsString is correct when called'
-  service.getYearAsString(date) == "2013"
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Mocks Setup</h2>
-            <pre><code data-trim contenteditable>
-class WorkItemServiceSpecTest extends Specification {
-  def service = new WorkItemService()
-  def workItemRepository = Mock(WorkItemRepository)
-  def setup() {
-    service.workItemRepository = workItemRepository
-  }
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Mocks - Simple</h2>
-            <pre><code data-trim contenteditable>
-def "findAllByMakeAndYear works with mocks"() {
-  given: 'a bunch of work items'
-  List&lt;WorkItem> allWorkItems = buildAllWorkItems()
-  
-  when: 'findAllByMakeAndYear is called'
-  def results = service.findAllByMakeAndYear('ford', '2013')
-  
-  then: 'results are correct'
-  1 * workItemRepository.findAll() >> allWorkItems
-  results.containsAll allWorkItems[2,4]
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Mocks - Wildcard _</h2>
-            <pre><code data-trim contenteditable>
-/** not a good pattern. just showing it is possible */
-def "findAllByMakeAndYear with many tests at once"() {
-  given: 'a bunch of work items'
-  List&lt;WorkItem> allWorkItems = buildAllWorkItems()
-  _ * workItemRepository.findAll() >> allWorkItems
-  
-  expect: 'findAllByMakeAndYear is called and has correct results'
-  service.findAllByMakeAndYear('ford', '2013').containsAll(
-     allWorkItems[2,4])
-  service.findAllByMakeAndYear('ford', '2012').containsAll(
-     allWorkItems[0..1])
-  service.findAllByMakeAndYear('chevy', '2013').empty
-  !service.findAllByMakeAndYear('ford', '2014')
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock - Multiple when/then</h2>
-            <pre><code data-trim contenteditable>
-def "findAllByMakeAndYear with many tests at once but multiple blocks"() {
-  given: 'a bunch of work items'
-  List<WorkItem> allWorkItems = buildAllWorkItems()
-  
-  when: 'findAllByMakeAndYear is called for Ford and 2013'
-  def results = service.findAllByMakeAndYear('ford', '2013')
-  
-  then: 'results are correct'
-  1 * workItemRepository.findAll() >> allWorkItems
-  results.containsAll allWorkItems[2,4]
-  
-  when: 'findAllByMakeAndYear is called for Ford and 2012'
-  results = service.findAllByMakeAndYear('ford', '2012')
-  
-  then: 'results are correct'
-  1 * workItemRepository.findAll() >> allWorkItems
-  results.containsAll allWorkItems[0..1]
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock @Unroll Magic FTW!</h2>
-            <ul>
-              <li>Wow. Killer Feature! &nbsp; &nbsp; 
-                <div class="i icon-magic"></div>
-              </li>
-              <li>Parameterized Tests (anyone doing JUnit style?)</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-@Unroll
-def "getYearAsString with #inputDate returns #result"
-                                (String inputDate, String result) {
-expect: 'getYearAsString is correct when called'
-  service.getYearAsString(
-              Date.parse("MM/dd/yyyy", inputDate)) == result
-              
-  where:
-  inputDate    | result
-  "01/01/1999" | "1999"
-  "02/01/2000" | "2000"
-  "03/01/199"  | "199"
-  '03/01/2013' | '2013'	
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock old() method</h2>
-            <ul>
-              <li>"Wait, WTF is going on there? That’s voodoo!" -- <a href="http://blog.freeside.co/post/41774646403/spock-killer-features-the-old-method" target="_blank">Rob Fletcher</a></li>
-            </ul>
-            <pre><code data-trim contenteditable>
-def "findAll workItems and Save showing how the old method works"() {
-  //...
-  
-  when: 'workItem saved, and results retrieved'
-  WorkItem workItem = new WorkItem(car, new Date(), "Oil Change", provider, 18123L, 60.12, "Took 1:45 so got free oil change coupon");
-  workItem = workItemRepository.save(workItem);
-  List&lt;WorkItem> result = workItemRepository.findAll();
-  
-  then: 'size was incremented'
-  result.size() == old(workItemRepository.findAll()).size() + 1
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Wires into Spring</h2>
-            <ul>
-              <li>Needs spock-spring plugin</li>
-              <li>Just use @Autowired</li>
-              <li>Setup Transaction rollbacks</li>
-              <li>WorkItemRepositorySpecIT.groovy</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-@ContextConfiguration(loader=AnnotationConfigContextLoader, 
-                      classes=[RootConfig, PersistenceConfig])
-@Transactional
-abstract class IntegrationSpecBaseClass extends Specification {
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock + Hamcrest?</h2><i class="icon-check">
-              &nbsp; 
-              Yes it can be done (that() and expect())</i>
-            <pre><code data-trim contenteditable>
-  expect: 'findAllByMakeAndYear returns correct results'
-  that result1, containsInAnyOrder(allWorkItems[2], allWorkItems[4])
-  that result2, containsInAnyOrder(allWorkItems[0], allWorkItems[1])
-  that result3, empty()
-  that result4, empty()
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock + Hamcrest? 2</h2><i class="icon-thumbs-down">
-              &nbsp; 
-              But groovy often easier</i>
-            <pre><code data-trim contenteditable>
-expect: 'findAllByMakeAndYear returns correct results'
-result1.containsAll allWorkItems[2,4]
-result2.containsAll(allWorkItems[0..1])
-result3.empty
-!result4
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Miscellaneous</h2>
-            <ul>
-              <li>thrown() and notThrown()</li>
-              <li>setup() and cleanup()</li>
-              <li>setupSpec() and cleanupSpec()</li>
-              <li>@Ignore, @IgnoreRest, @Timeout, @FailsWith</li>
-              <li>where: using simple arrays instead of tables</li>
-              <li> <a href="https://code.google.com/p/spock/wiki/SpockBasics" target="_blank">SpockBasics</a></li>
-            </ul>
-          </section>
-          <section>
-            <h2>Spock vs JUnit+Mockito+Hamcrest</h2>
-            <ul>
-              <li>Spock gives you power of Groovy</li>
-              <li>I prefer readability of Spock Specs</li>
-              <li>Opinions? Thoughts? Spock Questions?</li>
-            </ul>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Testing REST Clients</h2>
-            <ul>
-              <li>Spring MockRestServiceServer <a href="http://www.objectpartners.com/2013/01/09/rest-client-testing-with-mockrestserviceserver/" target="_blank">Blog Post</a></li>
-              <li>SimpleRestServiceFunctionalTest.java<a href="https://github.com/jeffsheets/MockRestServiceServerExample" target="_blank">github.com/jeffsheets/MockRestServiceServerExample</a></li>
-            </ul>
-            <pre><code data-trim contenteditable>
-public void testGetMessage() {
-  mockServer.expect(requestTo("http://google.com"))
-    .andExpect(method(HttpMethod.GET))
-    .andRespond(withSuccess("resultSuccess", MediaType.TEXT_PLAIN));
-    
-  String result = simpleRestService.getMessage();
-  
-  mockServer.verify();
-  assertThat(result, allOf(containsString("SUCCESS"), 
-                           containsString("resultSuccess")));
-}
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Testing Mail Senders</h2>
-            <ul>
-              <li>MockMailSender for Spring JavaMailSender</li>
-              <li>Mocks it out so no mail is sent</li>
-              <li>Other tools spinning up real mail servers</li>
-              <li>Described well in this <a href="http://fahdshariff.blogspot.com/2012/09/testing-email-with-mock-mailsender.html" target="_blank">Blog Post</a></li>
-              <li>See MockMailSender.java</li>
-            </ul>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Conclusion</h2>
-          </section>
-          <section>
-            <h2>References</h2>
-            <ul>
-              <li><b>BIG </b>thanks to Mike Kelly for <a href="https://github.com/mrkelly/reveal-template" target="_blank">reveal.js template</a></li>
-              <li>Mrhaki Blog <a href="http://mrhaki.blogspot.co.uk/2013/05/spocklight-support-for-hamcrest-matchers.html" target="_blank">for Spock</a></li>
-              <li>JavaCodeGeeks Testing 2013 <a href="http://www.javacodegeeks.com/2013/07/testing-web-based-spring-applications-in-2013-part-one.html" target="_blank">Blog Post</a></li>
-            </ul>
-          </section>
-          <section>
-            <h1><i class="icon-question-sign"></i></h1>
-            <h2>Questions</h2>
-          </section>
-        </section>
-        <section>
-          <h3>Java Trends in 2013</h3>
+          <h2>Review shortcuts, tips, and tricks</h2>
           <ul>
-            <li>Cloud PaaS (Heroku & Cloudfoundry/Appfog)</li>
-            <li>Continuous Deployment (Cloudbees & drone.io)</li>
-            <li>Online IDEs (codenvy and cloud9)</li>
-            <li>Dropwizard / Spring Boot / No-Servlet?</li>
-            <li>Akka async promises in Java/Scala</li>
-            <li>Java 8 Functional Style (next year)</li>
+            <li>Tip 1: daemon</li>
+            <li>Tip 2: gradle.properties</li>
+            <ul>
+              <li>always turn the daemon on</li>
+            </ul>
+            <li>Tip 3: The CamelCaseShortCut (CCSC)</li>
+            <li>Tip 4: default task</li>
+            <li>apply from http</li>
+            <ul>
+              <li>common settings for projects on your whole team</li>
+            </ul>
+            <li>eclipse plugin: URL</li>
           </ul>
+        </section>
+        <section>
+          <h2>Maven broken?</h2>
+        </section>
+        <section>
+          <h2>References</h2>
         </section>
       </div>
     </div>
