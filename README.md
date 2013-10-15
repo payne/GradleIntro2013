@@ -1,7 +1,8 @@
 Slides for Gradle 2013 tech talk
 =======
 
-Presentation here: http://payne.github.io/Gradle2013Slides
+Presentation here: http://payne.github.io/GradleIntro2013
+
 
 #### Thanks to Jeff Sheets!
 * Jeff used a wonderful setup for his slides in his talk
