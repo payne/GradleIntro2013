@@ -58,8 +58,8 @@ html(class="no-js", ng-app="main")
               li 
                 i.icon-github &nbsp;
                 a(href="https://github.com/payne", target="_blank") @payne
-                li Website &nbsp;
-                a(href="http://MattPayne.org/", target="_blank") http://MattPayne.org
+                li 
+                  a(href="http://MattPayne.org/", target="_blank") http://MattPayne.org
                 li Payne@MattPayne.org
                 
         section
@@ -88,6 +88,15 @@ html(class="no-js", ng-app="main")
 
         section
             h2 What is gradle?
+            h3 Google points to gradle's wikipedia entry:
+            p Gradle is a project automation tool that builds upon the concepts of Apache Ant and Apache Maven and introduces a Groovy-based DSL instead of the more traditional XML form of declaring the project configuration. -- 
+              a(href="http://en.wikipedia.org/wiki/Gradle",target="_blank") http://en.wikipedia.org/wiki/Gradle
+            hr
+            h3 I say:
+            ol
+              li don't prototype with maven: use gradle.   
+              li When you have a choice between ant, maven, and gradle: choose gradle.
+
 
         section
                 section
@@ -97,23 +106,36 @@ html(class="no-js", ng-app="main")
                       div Make the impossible possible, make the possible easy and make the easy elegant.
                         ul
                           li (inspired by Moshe Feldenkrais)
+
+
                 section
-                  h2 TAM!
-                  h3 Technology Acceptance Model
+                  h2 philosophy and theory
+                  ol
+                    li 
+                      a(href="http://en.wikipedia.org/wiki/Technology_acceptance_model",target="_blank") Technology Acceptance Model (TAM) 
+                    ul
+                      li Perceived usefulness
+                      li Perceived ease-of-use
+                    li Network effect 
+                    ul
+                      li
+                        a(href="http://en.wikipedia.org/wiki/Network_effect",target="_blank") the value of a product or service is dependent on the number of others using it.
 
 
         section
             h2 Where is gradle being used?
             ol
-              li Put in some stuff about adoption curves 
+              li Adoption curves 
               li Add the list of projects and companies that use gradle
+              ul
+                li Hibernate, spring, spring source, Tahles, Siemens, LinkedIn, etc
 
         section
             h2 Who is who in the gradle zoo?
             ol 
-              li TB
-              li Main Gradle person
+              li http://www.gradleware.com/team
               li GradleWare.com
+              li Tim Berglund -- Great books and articles
 
         section
             h2 When is gradle ready to use?
@@ -421,10 +443,17 @@ html(class="no-js", ng-app="main")
               ul
                 li 9/26/2013
               li This is why Goldilocks would use gradle
+              li http://www.gradleware.com/news/blog/answering-more-gradle-v-maven-fud
               li Is gradle perfect?  Of course not! 
                 i.icon-smile
+              li Discussion?  Over beer?
 
         section
-            h2 References
+            h2 Free References
+            ol
+              li http://www.gradle.org/learn
+              li http://mrhaki.blogspot.com/
+              li http://www.gradle.org/books
+            
 
     script(src="./assets/js/app.js")
