@@ -175,7 +175,7 @@ html(class="no-js", ng-app="main")
                 tree
                 gradle build
                 gradle build
-                gradle -daemon build
+                gradle --daemon build
                 gradle build
                 java -cp build/libs/first.jar demo.Hello
                 </code>
@@ -212,11 +212,17 @@ html(class="no-js", ng-app="main")
             h3 Build Setup tasks
             ol
               li setupBuild - Initializes a new Gradle build. [incubating]
+              ul
+                li Generates directory tree and sample build file
               li wrapper - Generates Gradle wrapper files. [incubating]
+                ul
+                  li Generates shell/batch script that downloads gradle for you.
+                  li Wonderful if you continous integration (CI) server does not directly support gradle.  Also if you want to share a script with someone who may not have gradle.
+              li And, there's a gui: <b>gradle --gui</b>
 
           section
             h2 Dependency management: the source
-            div DemoBeanUtils.java
+            div MainDemoBeanUtils.java
             pre.
               <code data-trim contenteditable>
               package demo;
@@ -232,7 +238,7 @@ html(class="no-js", ng-app="main")
                   this.strPropertyFileName = args.length > 0 ? args[0] : "jdbc.properties";
                   Properties properties = new Properties();
                   properties.load(new FileReader(strPropertyFileName));
-                  BeanUtils.populate(this, properties);
+                  BeanUtils.populate(this, properties); // remember the accessors
                   System.out.format("user=%s password=%s\n", dbUser, dbPassword);
                 }
               }
@@ -244,6 +250,7 @@ html(class="no-js", ng-app="main")
             pre.
               <code data-trim contenteditable>
               apply plugin: 'java'
+              apply plugin: 'eclipse'
               repositories { mavenCentral() }
 
               dependencies { 
@@ -253,7 +260,7 @@ html(class="no-js", ng-app="main")
             h2 LMGTFY.com
             ul 
              li Just google <b>gradle package or library name</b> for example:
-              a(href="http://lmgtfy.com/?q=gradle+commons+beanutils&l=1") gradle commons beanutils
+              a(href="http://lmgtfy.com/?q=gradle+commons+beanutils&l=1",target="_blank") gradle commons beanutils
              li MVNrepository.com needs ad revenue...
 
           section
@@ -264,21 +271,42 @@ html(class="no-js", ng-app="main")
                 cat > src/main/java/demo/MainBeanUtilsDemo.java 
                 cat > gradle.build
                 echo 'org.gradle.daemon=true' > gradle.properties
+                gradle eclipse # So we can import this into eclipse and fix it up a bit.
                 gradle build # Don't need the --daemon now
                 </code>
               ol
-                li Let's note the timing differences
+                li Tip 2: Use gradle.properties to always use the daemon
                   ul
-                    li Tip 2: Use gradle.properties to always use the daeomn
-                      ul
-                        li gradle's daemon makes things "faster"
-                li gradle.properties can be located in several places
-                  ol
-                    li next to build.gradle
-                    li in ${HOME}
+                    li gradle's daemon makes things "faster"
+                    li <b>ps -ef | egrep -i 'gradle'</b>
                 li 
                   a(href="http://www.gradle.org/docs/current/userguide/build_environment.html",target="_blank") User Guide Chapter 20: The Build Environment
                 
+          section
+            h2 Using gradle's eclipse plugin
+            ol
+              li add "apply plugin: 'eclipse'" to your build.gradle
+              li gradle eclipse
+              li In eclipse, import existing eclipse project
+              li joy 
+                i.icon-smile
+
+            h2 Next, Using eclipse's gradle plugin
+
+          section
+              h2 Using eclipse's gradle plugin
+              ol
+                li 
+                  a(href="http://www.gradle.org/tooling") Gradle tooling
+                li 
+                  a(href="https://marketplace.eclipse.org/content/gradle-integration-eclipse") Gradle Integration for Eclipse
+                ul
+                  li I did not install the Spring Dashboard
+                  li github.com/spring-projects/eclipse-integration-gradle/
+                li 
+                  img(src="assets/img/eclipse-marketplace.png")
+              
+
           section
               h2 Dependency management: Running 
               ul 
@@ -286,7 +314,9 @@ html(class="no-js", ng-app="main")
                 li Folks manage the classpath like this with ant and maven too...
               pre.
                 <code data-trim contenteditable>
+                defaultTasks 'BeanDemo'
                 apply plugin: 'java'
+                apply plugin: 'eclipse'
                 repositories { mavenCentral() }
 
                 dependencies { 
@@ -304,33 +334,16 @@ html(class="no-js", ng-app="main")
                 ul
                   li Tip 3: The CamelCaseShortCut (CCSC)
 
-          section
-            h2 Using gradle's eclipse plugin
-            ol
-              li add "apply plugin: 'eclipse'" to your build.gradle
-              li gradle eclipse
-              li In eclipse, import existing eclipse project
-              li joy 
-                i.icon-smile
-
-            h2 Next, Using eclipse's gradle plugin
-
-          section
-              h2 Using eclipse's gradle plugin
-              ol
-                li 
-                a(href="http://www.gradle.org/tooling") Gradle tooling
-                li 
-                a(href="https://marketplace.eclipse.org/content/gradle-integration-eclipse") Gradle Integration for Eclipse
-                ul
-                  li I did not install the Spring Dashboard
-                  li github.com/spring-projects/eclipse-integration-gradle/
-                li 
-                  img(src="assets/img/eclipse-marketplace.png")
-              
 
           section
               h2 Converting a maven project
+              div Let's convert a simple mvn project to gradle.   For example a(href="https://github.com/kohsuke/github-api") kohsuke/github-api
+              ol
+                li <b>git clone https://github.com/kohsuke/github-api.git</b>
+                li <b>cd github-api</b>
+                li <b>gradle setupBuild</b>
+                li <b>vim pom.xml</b> # this only handle simple/trivial pom.xml files
+                li <b>less build.gradle</b>
 
           section
               h2 Reusing ant goals

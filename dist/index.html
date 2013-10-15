@@ -189,7 +189,7 @@ cat > gradle.build
 tree
 gradle build
 gradle build
-gradle -daemon build
+gradle --daemon build
 gradle build
 java -cp build/libs/first.jar demo.Hello
 </code></pre>
@@ -230,12 +230,21 @@ mpayne-mbp:first mpayne$
             <h3>Build Setup tasks</h3>
             <ol>
               <li>setupBuild - Initializes a new Gradle build. [incubating]</li>
-              <li>wrapper - Generates Gradle wrapper files. [incubating]</li>
+              <ul>
+                <li>Generates directory tree and sample build file</li>
+              </ul>
+              <li>wrapper - Generates Gradle wrapper files. [incubating]
+                <ul>
+                  <li>Generates shell/batch script that downloads gradle for you.</li>
+                  <li>Wonderful if you continous integration (CI) server does not directly support gradle.  Also if you want to share a script with someone who may not have gradle.</li>
+                </ul>
+              </li>
+              <li>And, there's a gui: <b>gradle --gui</b></li>
             </ol>
           </section>
           <section>
             <h2>Dependency management: the source</h2>
-            <div>DemoBeanUtils.java</div>
+            <div>MainDemoBeanUtils.java</div>
             <pre><code data-trim contenteditable>
 package demo;
 import org.apache.commons.beanutils.BeanUtils;
@@ -250,7 +259,7 @@ public class MainBeanUtilsDemo {
     this.strPropertyFileName = args.length > 0 ? args[0] : "jdbc.properties";
     Properties properties = new Properties();
     properties.load(new FileReader(strPropertyFileName));
-    BeanUtils.populate(this, properties);
+    BeanUtils.populate(this, properties); // remember the accessors
     System.out.format("user=%s password=%s\n", dbUser, dbPassword);
   }
 }
@@ -262,6 +271,7 @@ public class MainBeanUtilsDemo {
             <div>build.gradle</div>
             <pre><code data-trim contenteditable>
 apply plugin: 'java'
+apply plugin: 'eclipse'
 repositories { mavenCentral() }
 
 dependencies { 
@@ -270,7 +280,7 @@ dependencies {
 </code></pre>
             <h2>LMGTFY.com</h2>
             <ul> 
-              <li>Just google <b>gradle package or library name</b> for example:<a href="http://lmgtfy.com/?q=gradle+commons+beanutils&amp;l=1">gradle commons beanutils</a></li>
+              <li>Just google <b>gradle package or library name</b> for example:<a href="http://lmgtfy.com/?q=gradle+commons+beanutils&amp;l=1" target="_blank">gradle commons beanutils</a></li>
               <li>MVNrepository.com needs ad revenue...</li>
             </ul>
           </section>
@@ -281,25 +291,39 @@ mkdir -p src/main/java/demo # redundant
 cat > src/main/java/demo/MainBeanUtilsDemo.java 
 cat > gradle.build
 echo 'org.gradle.daemon=true' > gradle.properties
+gradle eclipse # So we can import this into eclipse and fix it up a bit.
 gradle build # Don't need the --daemon now
 </code></pre>
             <ol>
-              <li>Let's note the timing differences
+              <li>Tip 2: Use gradle.properties to always use the daemon
                 <ul>
-                  <li>Tip 2: Use gradle.properties to always use the daeomn
-                    <ul>
-                      <li>gradle's daemon makes things "faster"</li>
-                    </ul>
-                  </li>
+                  <li>gradle's daemon makes things "faster"</li>
+                  <li><b>ps -ef | egrep -i 'gradle'</b></li>
                 </ul>
               </li>
-              <li>gradle.properties can be located in several places
-                <ol>
-                  <li>next to build.gradle</li>
-                  <li>in ${HOME}</li>
-                </ol>
-              </li>
               <li> <a href="http://www.gradle.org/docs/current/userguide/build_environment.html" target="_blank">User Guide Chapter 20: The Build Environment</a></li>
+            </ol>
+          </section>
+          <section>
+            <h2>Using gradle's eclipse plugin</h2>
+            <ol>
+              <li>add "apply plugin: 'eclipse'" to your build.gradle</li>
+              <li>gradle eclipse</li>
+              <li>In eclipse, import existing eclipse project</li>
+              <li>joy <i class="icon-smile"></i></li>
+            </ol>
+            <h2>Next, Using eclipse's gradle plugin</h2>
+          </section>
+          <section>
+            <h2>Using eclipse's gradle plugin</h2>
+            <ol>
+              <li> <a href="http://www.gradle.org/tooling">Gradle tooling</a></li>
+              <li> <a href="https://marketplace.eclipse.org/content/gradle-integration-eclipse">Gradle Integration for Eclipse</a></li>
+              <ul>
+                <li>I did not install the Spring Dashboard</li>
+                <li>github.com/spring-projects/eclipse-integration-gradle/</li>
+              </ul>
+              <li> <img src="assets/img/eclipse-marketplace.png"></li>
             </ol>
           </section>
           <section>
@@ -309,7 +333,9 @@ gradle build # Don't need the --daemon now
               <li>Folks manage the classpath like this with ant and maven too...</li>
             </ul>
             <pre><code data-trim contenteditable>
+defaultTasks 'BeanDemo'
 apply plugin: 'java'
+apply plugin: 'eclipse'
 repositories { mavenCentral() }
 
 dependencies { 
@@ -330,29 +356,15 @@ task BeanDemo(type: JavaExec) {
             </ol>
           </section>
           <section>
-            <h2>Using gradle's eclipse plugin</h2>
-            <ol>
-              <li>add "apply plugin: 'eclipse'" to your build.gradle</li>
-              <li>gradle eclipse</li>
-              <li>In eclipse, import existing eclipse project</li>
-              <li>joy <i class="icon-smile"></i></li>
-            </ol>
-            <h2>Next, Using eclipse's gradle plugin</h2>
-          </section>
-          <section>
-            <h2>Using eclipse's gradle plugin</h2>
-            <ol>
-              <li> </li><a href="http://www.gradle.org/tooling">Gradle tooling</a>
-              <li> </li><a href="https://marketplace.eclipse.org/content/gradle-integration-eclipse">Gradle Integration for Eclipse</a>
-              <ul>
-                <li>I did not install the Spring Dashboard</li>
-                <li>github.com/spring-projects/eclipse-integration-gradle/</li>
-              </ul>
-              <li> <img src="assets/img/eclipse-marketplace.png"></li>
-            </ol>
-          </section>
-          <section>
             <h2>Converting a maven project</h2>
+            <div>Let's convert a simple mvn project to gradle.   For example a(href="https://github.com/kohsuke/github-api") kohsuke/github-api</div>
+            <ol>
+              <li><b>git clone https://github.com/kohsuke/github-api.git</b></li>
+              <li><b>cd github-api</b></li>
+              <li><b>gradle setupBuild</b></li>
+              <li><b>vim pom.xml</b> # this only handle simple/trivial pom.xml files</li>
+              <li><b>less build.gradle</b></li>
+            </ol>
           </section>
           <section>
             <h2>Reusing ant goals</h2>
