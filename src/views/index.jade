@@ -24,7 +24,7 @@ html(class="no-js", ng-app="main")
           section.index-section(data-state="index-slide")
             h2 Goldilocks' would use gradle 
             div an introduction to gradle 
-            div {by Matt Payne} 
+            div by Matt Payne
             div 10/15/2013
 
           section
@@ -66,8 +66,8 @@ html(class="no-js", ng-app="main")
             h2 Talk Outline 
             ol
               li 5WH: What, Why, Where, Who, When, and How
-              li Using and demoing gradle {
-                i.icon-smile}
+              li Using and demoing gradle 
+                i.icon-smile
               ol
                 //TODO: type=a
                 li From scatch
@@ -337,12 +337,13 @@ html(class="no-js", ng-app="main")
 
           section
               h2 Converting a maven project
-              div Let's convert a simple mvn project to gradle.   For example a(href="https://github.com/kohsuke/github-api") kohsuke/github-api
+              div Let's convert a simple mvn project to gradle.   For example 
+              a(href="https://github.com/kohsuke/github-api") kohsuke/github-api
               ol
                 li <b>git clone https://github.com/kohsuke/github-api.git</b>
                 li <b>cd github-api</b>
                 li <b>gradle setupBuild</b>
-                li <b>vim pom.xml</b> # this only handle simple/trivial pom.xml files
+                li <b>vim pom.xml</b> # Remove parent & move groupID to top 
                 li <b>less build.gradle</b>
 
           section
@@ -365,6 +366,38 @@ html(class="no-js", ng-app="main")
               </code>
 
         section
+          section 
+            h2 Good things to know
+            ol
+              li Build life cycle
+              li Task api
+              li The DSL is on top of groovy.   So, all of groovy is there
+              li Groovy can be a lot like java
+
+           section 
+             h2 Build Life Cycle
+             ol
+               li Initialization
+               li Configuration
+               li Execution
+             div
+             a(href="http://www.gradle.org/docs/current/userguide/build_lifecycle.html",target="_blank") Chapter 55: The Build Lifecycle
+
+           section 
+             h2 Task API
+             ol
+               li build.gradle is a program
+               li tasks are objects
+
+           section 
+             h2 Gradle DSL
+             ol
+               li 
+                 a(href="http://www.gradle.org/docs/current/dsl/",target="_blank") Gradle DSL Reference
+               li a simple groovy example
+               li simple example java like
+
+        section
             h2 Review shortcuts, tips, and tricks
             ul
               li Tip 1: daemon
@@ -376,10 +409,20 @@ html(class="no-js", ng-app="main")
               li apply from http
               ul
                 li common settings for projects on your whole team
-              li eclipse plugin: URL
+              li github.com/spring-projects/eclipse-integration-gradle/
+              li <b>--parallel</b> option runs unit tests in parallel
 
         section
             h2 Maven broken?
+            ol
+              li Some people think so
+              li
+                a(href="http://blog.ltgt.net/maven-is-broken-by-design/",target="_blank") Maven broken by design
+              ul
+                li 9/26/2013
+              li This is why Goldilocks would use gradle
+              li Is gradle perfect?  Of course not! 
+                i.icon-smile
 
         section
             h2 References

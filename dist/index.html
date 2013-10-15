@@ -27,7 +27,7 @@
           <section data-state="index-slide" class="index-section">
             <h2>Goldilocks' would use gradle </h2>
             <div>an introduction to gradle </div>
-            <div>{by Matt Payne} </div>
+            <div>by Matt Payne</div>
             <div>10/15/2013</div>
           </section>
           <section>
@@ -69,7 +69,7 @@
           <h2>Talk Outline </h2>
           <ol>
             <li>5WH: What, Why, Where, Who, When, and How</li>
-            <li>Using and demoing gradle {<i class="icon-smile">}</i></li>
+            <li>Using and demoing gradle <i class="icon-smile"></i></li>
             <ol>
               <!--TODO: type=a-->
               <li>From scatch</li>
@@ -357,12 +357,12 @@ task BeanDemo(type: JavaExec) {
           </section>
           <section>
             <h2>Converting a maven project</h2>
-            <div>Let's convert a simple mvn project to gradle.   For example a(href="https://github.com/kohsuke/github-api") kohsuke/github-api</div>
+            <div>Let's convert a simple mvn project to gradle.   For example </div><a href="https://github.com/kohsuke/github-api">kohsuke/github-api</a>
             <ol>
               <li><b>git clone https://github.com/kohsuke/github-api.git</b></li>
               <li><b>cd github-api</b></li>
               <li><b>gradle setupBuild</b></li>
-              <li><b>vim pom.xml</b> # this only handle simple/trivial pom.xml files</li>
+              <li><b>vim pom.xml</b> # Remove parent & move groupID to top </li>
               <li><b>less build.gradle</b></li>
             </ol>
           </section>
@@ -387,6 +387,41 @@ assertEquals(car.getDescription(), result.getDescription());
           </section>
         </section>
         <section>
+          <section> 
+            <h2>Good things to know</h2>
+            <ol>
+              <li>Build life cycle</li>
+              <li>Task api</li>
+              <li>The DSL is on top of groovy.   So, all of groovy is there</li>
+              <li>Groovy can be a lot like java</li>
+            </ol>
+          </section>
+          <section> 
+            <h2>Build Life Cycle</h2>
+            <ol>
+              <li>Initialization</li>
+              <li>Configuration</li>
+              <li>Execution</li>
+            </ol>
+            <div></div><a href="http://www.gradle.org/docs/current/userguide/build_lifecycle.html" target="_blank">Chapter 55: The Build Lifecycle</a>
+          </section>
+          <section> 
+            <h2>Task API</h2>
+            <ol>
+              <li>build.gradle is a program</li>
+              <li>tasks are objects</li>
+            </ol>
+          </section>
+          <section> 
+            <h2>Gradle DSL</h2>
+            <ol>
+              <li> <a href="http://www.gradle.org/docs/current/dsl/" target="_blank">Gradle DSL Reference</a></li>
+              <li>a simple groovy example</li>
+              <li>simple example java like</li>
+            </ol>
+          </section>
+        </section>
+        <section>
           <h2>Review shortcuts, tips, and tricks</h2>
           <ul>
             <li>Tip 1: daemon</li>
@@ -400,11 +435,21 @@ assertEquals(car.getDescription(), result.getDescription());
             <ul>
               <li>common settings for projects on your whole team</li>
             </ul>
-            <li>eclipse plugin: URL</li>
+            <li>github.com/spring-projects/eclipse-integration-gradle/</li>
+            <li><b>--parallel</b> option runs unit tests in parallel</li>
           </ul>
         </section>
         <section>
           <h2>Maven broken?</h2>
+          <ol>
+            <li>Some people think so</li>
+            <li><a href="http://blog.ltgt.net/maven-is-broken-by-design/" target="_blank">Maven broken by design</a></li>
+            <ul>
+              <li>9/26/2013</li>
+            </ul>
+            <li>This is why Goldilocks would use gradle</li>
+            <li>Is gradle perfect?  Of course not! <i class="icon-smile"></i></li>
+          </ol>
         </section>
         <section>
           <h2>References</h2>
