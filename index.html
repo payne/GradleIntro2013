@@ -30,7 +30,7 @@
             <div>by Matt Payne</div>
             <div>10/15/2013</div>
             <ul>
-              <h6>Updated Tue Nov  5 07:19:31 CST 2013</h6>
+              <h6>Updated Tue Nov  5 12:13:14 CST 2013</h6>
             </ul>
           </section>
           <section>
@@ -155,7 +155,7 @@
         <section>
           <h2>Where is gradle being used?</h2>
           <ol>
-            <li>Adoption curves </li>
+            <li>Adoption curves <a href="http://en.wikipedia.org/wiki/Technology_adoption_lifecycle" target="_blank"><img src="http://upload.wikimedia.org/wikipedia/en/4/45/DiffusionOfInnovation.png"></a></li>
             <li>Add the list of projects and companies that use gradle</li>
             <ul>
               <li>Hibernate, spring, spring source, Tahles, Siemens, LinkedIn, etc</li>
@@ -489,13 +489,21 @@ task zip << {
         <section>
           <h2>Review shortcuts, tips, and tricks</h2>
           <ul>
-            <li>Tip 1: daemon</li>
+            <li>Tip 1: daemon
+              <ul>
+                <li>gradle --daemon</li>
+              </ul>
+            </li>
             <li>Tip 2: gradle.properties</li>
             <ul>
-              <li>always turn the daemon on</li>
+              <li>org.gradle.daemon=-true</li>
             </ul>
             <li>Tip 3: The CamelCaseShortCut (CCSC)</li>
-            <li>Tip 4: default task</li>
+            <li>Tip 4: default task
+              <ul>
+                <li>defaultTasks 'BeanDemo' # can be a comma seperated list</li>
+              </ul>
+            </li>
             <li>apply from http</li>
             <ul>
               <li>common settings for projects on your whole team</li>
