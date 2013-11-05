@@ -397,7 +397,24 @@ task BeanDemo(type: JavaExec) {
             </ol>
           </section>
           <section>
-            <h2>Converting a maven project</h2>
+            <h2>maven</h2>
+            <ol>
+              <li>Gradle uses maven repos</li>
+              <li>Gradle can publish to maven repos
+                <ul>
+                  <li> <a href="http://www.gradle.org/docs/current/userguide/maven_plugin.html" target="_blank">Use gradle's maven plugin</a></li>
+                  <li>apply plugin: 'maven'</li>
+                  <li>gradle install # publishes to local maven repo
+                    <ul>
+                      <li>This includes utilties to build a pom.xml for your artifact</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+          <section>
+            <h2>maven: Converting a maven project</h2>
             <div>Let's convert a simple mvn project to gradle.   For example </div><a href="https://github.com/kohsuke/github-api">kohsuke/github-api</a>
             <ol>
               <li><b>git clone https://github.com/kohsuke/github-api.git</b></li>
@@ -418,7 +435,7 @@ task zip << {
       }
   }
 }
-</code></pre><a href="http://www.gradle.org/docs/current/userguide/ant.html" target="_blank">Many ant examples in the user guide</a>
+</code></pre><a href="http://www.gradle.org/docs/current/userguide/ant.html" target="_blank">Many ant examples in the user guide</a><a href="http://stackoverflow.com/questions/17415284/gradle-cant-execute-an-ant-target" target="_blank">Example from StackOverflow</a>
           </section>
         </section>
         <section>

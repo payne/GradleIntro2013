@@ -383,7 +383,20 @@ html(class="no-js", ng-app="main")
 
 
           section
-              h2 Converting a maven project
+              h2 maven
+              ol
+                li Gradle uses maven repos
+                li Gradle can publish to maven repos
+                 ul
+                   li 
+                    a(href="http://www.gradle.org/docs/current/userguide/maven_plugin.html",target="_blank") Use gradle's maven plugin
+                   li apply plugin: 'maven'
+                   li gradle install # publishes to local maven repo
+                     ul
+                      li This includes utilties to build a pom.xml for your artifact
+
+          section
+              h2 maven: Converting a maven project
               div Let's convert a simple mvn project to gradle.   For example 
               a(href="https://github.com/kohsuke/github-api") kohsuke/github-api
               ol
@@ -407,6 +420,7 @@ html(class="no-js", ng-app="main")
                   }
                   </code>
               a(href="http://www.gradle.org/docs/current/userguide/ant.html",target="_blank") Many ant examples in the user guide
+              a(href="http://stackoverflow.com/questions/17415284/gradle-cant-execute-an-ant-target",target="_blank") Example from StackOverflow
 
 
         section
