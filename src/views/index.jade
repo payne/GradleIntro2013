@@ -394,7 +394,19 @@ html(class="no-js", ng-app="main")
                 li <b>less build.gradle</b>
 
           section
-              h2 Reusing ant goals
+              h2 Reusing ant: ant.importBuild 'build.xml'
+              pre.
+                  <code data-trim contenteditable>
+                  task zip << {
+                    ant.zip(destfile: 'archive.zip') {
+                        fileset(dir: 'src') {
+                            include(name: '**.xml')
+                            exclude(name: '**.java')
+                        }
+                      }
+                  }
+                  </code>
+              a(href="http://www.gradle.org/docs/current/userguide/ant.html",target="_blank") Many ant examples in the user guide
 
 
         section
