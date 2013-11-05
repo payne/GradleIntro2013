@@ -28,7 +28,7 @@ html(class="no-js", ng-app="main")
             div by Matt Payne
             div 10/15/2013
             ul
-             h6 Updated Tue Nov  5 07:19:31 CST 2013
+             h6 Updated Tue Nov  5 12:13:14 CST 2013
 
 
           section
@@ -148,6 +148,8 @@ html(class="no-js", ng-app="main")
             h2 Where is gradle being used?
             ol
               li Adoption curves 
+               a(href="http://en.wikipedia.org/wiki/Technology_adoption_lifecycle",target="_blank")
+                img(src="http://upload.wikimedia.org/wikipedia/en/4/45/DiffusionOfInnovation.png")
               li Add the list of projects and companies that use gradle
               ul
                 li Hibernate, spring, spring source, Tahles, Siemens, LinkedIn, etc
@@ -470,11 +472,15 @@ html(class="no-js", ng-app="main")
             h2 Review shortcuts, tips, and tricks
             ul
               li Tip 1: daemon
+               ul
+                li gradle --daemon
               li Tip 2: gradle.properties
               ul
-                li always turn the daemon on
+                li org.gradle.daemon=-true
               li Tip 3: The CamelCaseShortCut (CCSC)
               li Tip 4: default task
+               ul
+                li defaultTasks 'BeanDemo' # can be a comma seperated list
               li apply from http
               ul
                 li common settings for projects on your whole team
